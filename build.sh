@@ -35,7 +35,7 @@ download() {
 build() {
   cd "${srcdir}/${_pkgbase}-${pkgver}"
   ./autogen.sh
-  ./configure --without-kbuild --with-xtlibdir="${pkgdir}/usr/lib/xtables"
+  ./configure --without-kbuild
   make libxt-local
 }
 
@@ -55,8 +55,8 @@ package() {
 
   # Install extension
   cd "${srcdir}/${_pkgbase}-${pkgver}"
-  mkdir -p "${pkgdir}/usr/lib/xtables"
-  make libxt-install
+  mkdir -p "${pkgdir}$(pkg-config --variable=xtlibdir xtables)"
+  make libxt-install DESTDIR="${pkgdir}"
 }
 
 rm -rf "${pkgdir}" > /dev/null || true
