@@ -1,0 +1,10 @@
+#!/bin/sh
+
+DKMS_NAME="@_PKGBASE@"
+DKMS_VERSION="@PKGVER@"
+
+dkms add -m "${DKMS_NAME}" -v "${DKMS_VERSION}"
+dkms build -m "${DKMS_NAME}" -v "${DKMS_VERSION}"
+dkms install -m "${DKMS_NAME}" -v "${DKMS_VERSION}" || true
+
+exit 0

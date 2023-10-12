@@ -1,0 +1,8 @@
+#!/bin/sh
+
+DKMS_NAME="@_PKGBASE@"
+DKMS_VERSION="@PKGVER@"
+
+dkms remove -m "${DKMS_NAME}" -v "${DKMS_VERSION}" || true
+
+exit 0
